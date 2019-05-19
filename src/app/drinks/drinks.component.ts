@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-drinks',
@@ -7,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DrinksComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private rute: ActivatedRoute,
+    private location: Location
+  ) { }
 
   ngOnInit() {}
+
+  goBack(): void {
+    this.location.back();
+  }
 
 }
