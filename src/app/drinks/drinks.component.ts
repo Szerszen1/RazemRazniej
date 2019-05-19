@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { HttpService } from '../http.service';
+import { Observable } from 'rxjs';
+import { Drinks } from './model';
 
 @Component({
   selector: 'app-drinks',
@@ -11,10 +14,11 @@ export class DrinksComponent implements OnInit {
 
   constructor(
     private rute: ActivatedRoute,
-    private location: Location
+    private location: Location,
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   goBack(): void {
     this.location.back();
