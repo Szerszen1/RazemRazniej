@@ -13,4 +13,7 @@
   </div>
 
   <firebase-ui></firebase-ui>
+  <H1 *ngIf="fireAuth.auth.currentUser">Welcome {{fireAuth.auth.currentUser.displayName}}</H1>
+
+  <ion-button *ngIf="fireAuth.auth.currentUser" (click)="signOut()">Sign out</ion-button>
 </ion-content>
