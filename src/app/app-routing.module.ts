@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'drinks', component: DrinksComponent },  { path: 'recipe', loadChildren: './recipe/recipe.module#RecipePageModule' },
   { path: 'search', loadChildren: './search/search.module#SearchPageModule' },
+  { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule' },
 
 ];
 
