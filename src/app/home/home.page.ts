@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Facebook, FacebookLoginResponse, FacebookOriginal } from '@ionic-native/facebook';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +8,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-    constructor(public fireAuth: AngularFireAuth,) {
+    constructor(public fireAuth: AngularFireAuth) {
     }
+
 
     signOut() {
         this.fireAuth.auth.signOut().then(() => {
-          location.reload();
+          location.href = '/home';
+          console.log('Successfully logged out, see you nex time :)');
         }
         );
     }

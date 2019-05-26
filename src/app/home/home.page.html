@@ -1,19 +1,26 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-header>
+    <ion-toolbar *ngIf="fireAuth.auth.currentUser">
+    <ion-buttons slot="start">
+        <!--<ion-back-button defaultHref="/"></ion-back-button>-->
+      </ion-buttons>    
+    <ion-title>RazemRazniej</ion-title>
+      <ion-buttons slot="end">
+          <ion-img src="{{fireAuth.auth.currentUser.photoURL}}" ></ion-img>
+          <ion-button *ngIf="fireAuth.auth.currentUser" (click)="signOut()">Sign out</ion-button>
+        </ion-buttons>   
+    </ion-toolbar>
+  </ion-header>
 
+  <div class="ion-padding">
+    <h1 style="color:blue;"><b>RazemRazniej</b></h1>
+    <p><font size="1">Kiedy wybierasz się ze znajomymi na wycieczkę do innego miasta albo na wieczorny wypad do pubu,
+       bardzo łatwo zgubić pozostałych członków grupy. Aby zapobiec takim nieprzyjemnym sytuacjom
+        proponujemy użycie aplikacji "RazemRazniej". Aplikacja pokazuje współrzędne pozostałych
+         członków grupy, dlatego gdy tylko zbytnio się oddalisz możesz sprawdzić współrzędne 
+         pozostałych osób. </font> </p>
+  </div>
   <firebase-ui></firebase-ui>
   <H1 *ngIf="fireAuth.auth.currentUser">Welcome {{fireAuth.auth.currentUser.displayName}}</H1>
-
-  <ion-button *ngIf="fireAuth.auth.currentUser" (click)="signOut()">Sign out</ion-button>
+  
 </ion-content>

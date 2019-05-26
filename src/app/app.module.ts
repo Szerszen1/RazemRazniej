@@ -14,24 +14,20 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 
-import { Facebook } from '@ionic-native/facebook';
-
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
   signInOptions: [
 
-    //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     {
-      requireDisplayName: true,
+      requireDisplayName: false,
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
     },
     {
       scopes: [
         'public_profile',
         'email',
-        'user_likes',
-        'user_friends'
       ],
       customParameters: {
         'auth_type': 'reauthenticate'
