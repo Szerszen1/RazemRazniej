@@ -15,7 +15,8 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { DrinksComponent } from './drinks/drinks.component';
-import { HttpService } from './http.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpService } from './drinks/service/http.service';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -58,8 +59,10 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AppRoutingModule, 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    FirebaseUIModule.forRoot(firebaseUiAuthConfig)
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    HttpClientModule
   ],
+
   providers: [
     StatusBar,
     HttpService,

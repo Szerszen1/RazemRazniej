@@ -13,12 +13,15 @@
   </ion-header>
 
   <div class="ion-padding">
+    
     <h1  style="color:blue;"><b>RazemRazniej</b></h1>
     <p *ngIf="!fireAuth.auth.currentUser"><font size="1">Kiedy wybierasz się ze znajomymi na wycieczkę do innego miasta albo na wieczorny wypad do pubu,
        bardzo łatwo zgubić pozostałych członków grupy. Aby zapobiec takim nieprzyjemnym sytuacjom
         proponujemy użycie aplikacji "RazemRazniej". Aplikacja pokazuje współrzędne pozostałych
          członków grupy, dlatego gdy tylko zbytnio się oddalisz możesz sprawdzić współrzędne 
          pozostałych osób. </font> </p>
+  <ion-button expand="block" routerLink="/drink" routerDirection="root">
+
   </div>
   <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/maps" routerLinkActive="active">Your Location</ion-button>
   <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/drinks" routerLinkActive="active">Drinks</ion-button>
