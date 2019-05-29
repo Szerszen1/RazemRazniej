@@ -13,22 +13,15 @@
   </ion-header>
 
   <div class="ion-padding">
-<<<<<<< HEAD
-    <h1 style="color:blue;"><b>RazemRazniej</b></h1>
-    <p><font size="1">Kiedy wybierasz się ze znajomymi na wycieczkę do innego miasta albo na wieczorny wypad do pubu,
+    <h1  style="color:blue;"><b>RazemRazniej</b></h1>
+    <p *ngIf="!fireAuth.auth.currentUser"><font size="1">Kiedy wybierasz się ze znajomymi na wycieczkę do innego miasta albo na wieczorny wypad do pubu,
        bardzo łatwo zgubić pozostałych członków grupy. Aby zapobiec takim nieprzyjemnym sytuacjom
         proponujemy użycie aplikacji "RazemRazniej". Aplikacja pokazuje współrzędne pozostałych
          członków grupy, dlatego gdy tylko zbytnio się oddalisz możesz sprawdzić współrzędne 
          pozostałych osób. </font> </p>
-=======
-    <ion-button routerLink="/drinks" routerLinkActive="active">Drinks</ion-button>
-    <ion-button routerLink="/maps" routerLinkActive="active">Your Location</ion-button>
-    <p>The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-
->>>>>>> paulina2601
   </div>
-  <ion-button routerLink="/drinks" routerLinkActive="active">Drinks</ion-button>
+  <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/maps" routerLinkActive="active">Your Location</ion-button>
+  <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/drinks" routerLinkActive="active">Drinks</ion-button>
   <firebase-ui></firebase-ui>
   <H1 *ngIf="fireAuth.auth.currentUser">Welcome {{fireAuth.auth.currentUser.displayName}}</H1>
   
