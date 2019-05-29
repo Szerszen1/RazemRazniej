@@ -1,5 +1,5 @@
 {
-  "name": "razemrazniej",
+  "name": "razem-razniej",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -28,13 +28,13 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.1.0",
     "@ionic/pro": "2.0.4",
-    "core-js": "^2.5.4",
     "angularfire2": "^5.1.3",
     "cordova-plugin-facebook4": "4.2.1",
     "cordova-plugin-googleplus": "7.0.1",
-    "firebase": "^6.0.4",
+    "core-js": "^2.5.4",
+    "firebase": "^6.1.0",
     "firebaseui": "^4.0.0",
-    "firebaseui-angular": "^3.4.1",
+    "firebaseui-angular": "^3.4.2",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.29"
