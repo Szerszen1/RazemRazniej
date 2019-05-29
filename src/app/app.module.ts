@@ -12,13 +12,18 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { DrinksComponent } from './drinks/drinks.component';
 import { HttpService } from './http.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     DrinksComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule],
   providers: [
     StatusBar,
     HttpService,
