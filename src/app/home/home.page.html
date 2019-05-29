@@ -19,7 +19,7 @@
 
   
   <div class="ion-padding">
-    <h1  style="color:blue;"><b>RazemRazniej</b></h1>
+    <h1  *ngIf="!fireAuth.auth.currentUser" style="color:blue;"><b>RazemRazniej</b></h1>
     <p *ngIf="!fireAuth.auth.currentUser"><font size="1">Kiedy wybierasz się ze znajomymi na wycieczkę do innego miasta albo na wieczorny wypad do pubu,
        bardzo łatwo zgubić pozostałych członków grupy. Aby zapobiec takim nieprzyjemnym sytuacjom
         proponujemy użycie aplikacji "RazemRazniej". Aplikacja pokazuje współrzędne pozostałych
@@ -27,9 +27,10 @@
          pozostałych osób. 
         </font> </p>
   </div>
+  <H1 *ngIf="fireAuth.auth.currentUser">Welcome {{fireAuth.auth.currentUser.displayName}}</H1>
   <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/maps" routerLinkActive="active">Your Location</ion-button>
   <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/drinks" routerLinkActive="active">Drinks</ion-button>
   <firebase-ui></firebase-ui>
-  <H1 *ngIf="fireAuth.auth.currentUser">Welcome {{fireAuth.auth.currentUser.displayName}}</H1>
+  
   
 </ion-content>

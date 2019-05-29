@@ -18,7 +18,7 @@ export class MapsPage implements OnInit, AfterViewInit {
     description: ''
   };
   @ViewChild('mapElement') mapNativeElement: ElementRef;
-  constructor(private geolocation: Geolocation) { }
+  constructor(public geolocation: Geolocation) { }
 
   ngOnInit() {
     
@@ -94,6 +94,7 @@ export class MapsPage implements OnInit, AfterViewInit {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.latitude = resp.coords.latitude;
       this.longitude = resp.coords.longitude;
+      const mapDiv = document
       const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
         center: {lat: this.latitude, lng: this.longitude},
         zoom: 14
