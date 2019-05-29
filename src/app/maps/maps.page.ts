@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { $ } from 'protractor';
 import { AngularDelegate } from '@ionic/angular';
+//import { Location } from '@angular/common';
 
 declare var google;
 @Component({
@@ -20,6 +21,7 @@ export class MapsPage implements OnInit, AfterViewInit {
   constructor(private geolocation: Geolocation) { }
 
   ngOnInit() {
+    
   }
 
   createMeeting(form){
