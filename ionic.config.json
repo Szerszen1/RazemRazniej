@@ -1,6 +1,8 @@
 {
   "name": "RazemRazniej",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "520ea65a"
 }
