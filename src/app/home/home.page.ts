@@ -9,6 +9,7 @@ import { Facebook, FacebookLoginResponse, FacebookOriginal } from '@ionic-native
 })
 export class HomePage {
     constructor(public fireAuth: AngularFireAuth) {
+      
     }
 
 
