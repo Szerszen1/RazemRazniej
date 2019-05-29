@@ -10,15 +10,18 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { DrinksComponent } from './drinks/drinks.component';
-import { HttpService } from './http.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpService } from './drinks/service/http.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DrinksComponent],
+    AppComponent,],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule],
   providers: [
     StatusBar,
     HttpService,
