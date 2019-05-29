@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'drinks', component: DrinksComponent },
   { path: 'recipe', loadChildren: './recipe/recipe.module#RecipePageModule' },
   { path: 'search', loadChildren: './search/search.module#SearchPageModule' },
-];
+  { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule' },
+  { path: 'create-meeting', loadChildren: './create-meeting/create-meeting.module#CreateMeetingPageModule' },
 
 @NgModule({
   imports: [

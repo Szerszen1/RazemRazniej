@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mapa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div #mapElement class="map"></div>
+
+</ion-content>
+
+<form #form="ngForm" (ngSubmit)="createMeeting(form)" novalidate >
+    <ion-item>
+      <ion-label>Nazwa spotkania: </ion-label>
+      <ion-input type="text" required [(ngModel)]="todo.title" ngControl="title" name=title></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Opis spotkania: </ion-label>
+      <ion-textarea [(ngModel)]="todo.description" ngControl="description" name=description></ion-textarea>
+    </ion-item>
+    <ion-button color="primary"  type="submit" block>Utwórz Spotkanie</ion-button>
+  </form>
+ 
+   <!--<ion-content>
+    <div class="ion-padding">
+      <ion-button (click)="goBack()">go back</ion-button>
+      
+    </div>
+</ion-content>...-->
