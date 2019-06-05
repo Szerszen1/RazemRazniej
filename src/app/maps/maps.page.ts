@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { $ } from 'protractor';
-import { AngularDelegate } from '@ionic/angular';
+import { AngularDelegate, Events } from '@ionic/angular';
+import EventRepository from '../model/events/events-repository';
 //import { Location } from '@angular/common';
 
 declare var google;
@@ -17,18 +18,36 @@ export class MapsPage implements OnInit, AfterViewInit {
     title: '',
     description: ''
   };
+
   @ViewChild('mapElement') mapNativeElement: ElementRef;
-  constructor(public geolocation: Geolocation) { }
+  constructor(public geolocation: Geolocation, private events: EventRepository) { }
 
   ngOnInit() {
-    
+
+    this.events.findAll().subscribe(list => {
+      console.log(list);
+    })
   }
 
   createMeeting(form){
     console.log(this.todo, this.latitude, this.longitude);
   }
 
+  createEvent():  void {
+    console.log(this.todo);
+    this.events.addEvent({
+      id: '111',
+      ...this.todo
+    })
+  }
+
   joinMeeting(event, id){
+        // this.events.addEvent({
+    //   title: 'titit0',
+    //   description: 'desc',
+    //   id: '123'
+    // });
+    
     console.log('Dołączasz do wydarzenia: ' + id)
   }
 

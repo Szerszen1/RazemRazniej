@@ -10,13 +10,17 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular';
-import {AngularFireModule} from '@angular/fire';
+import {FirebaseUIModule, firebaseui} from 'firebaseui-angular';
+import {AngularFireModule, FirebaseDatabase, FirebaseFirestore} from '@angular/fire';
+import {AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
+import {AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { DrinksComponent } from './drinks/drinks.component';
 import { HttpService } from './http.service';
-
+import EventRepository from './model/events/events-repository';
+import * as firebase from 'firebase';
+//import firestore from 'firebase/firestore';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -58,13 +62,16 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AppRoutingModule, 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig)
   ],
   providers: [
     StatusBar,
     HttpService,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: EventRepository, useFactory: (db: AngularFirestore) => { return new EventRepository(db)}, deps: [AngularFirestore]}
   ],
   bootstrap: [AppComponent]
 })

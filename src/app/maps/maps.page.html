@@ -9,7 +9,7 @@
 
 </ion-content>
 
-<form #form="ngForm" (ngSubmit)="createMeeting(form)" novalidate >
+<form  novalidate >
     <ion-item>
       <ion-label>Nazwa spotkania: </ion-label>
       <ion-input type="text" required [(ngModel)]="todo.title" ngControl="title" name=title></ion-input>
@@ -18,7 +18,7 @@
       <ion-label>Opis spotkania: </ion-label>
       <ion-textarea [(ngModel)]="todo.description" ngControl="description" name=description></ion-textarea>
     </ion-item>
-    <ion-button color="primary"  type="submit" block>Utwórz Spotkanie</ion-button>
+    <ion-button color="primary"  type="submit" block (click)=createEvent()>Utwórz Spotkanie</ion-button>
   </form>
  
    <!--<ion-content>
