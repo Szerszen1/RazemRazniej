@@ -46,25 +46,26 @@
         </ion-buttons>   
     </ion-toolbar>
   </ion-header>
-  
-
-  
   <div class="ion-padding">
-    <h1  *ngIf="!fireAuth.auth.currentUser" style="color:blue;"><b>RazemRazniej</b></h1>
+    <p></p>
+    <h1 *ngIf="!fireAuth.auth.currentUser" class="centered" style="color:blue;"><b>RazemRazniej</b></h1>
     <p *ngIf="!fireAuth.auth.currentUser"><font size="1">Kiedy wybierasz się ze znajomymi na wycieczkę do innego miasta albo na wieczorny wypad do pubu,
        bardzo łatwo zgubić pozostałych członków grupy. Aby zapobiec takim nieprzyjemnym sytuacjom
         proponujemy użycie aplikacji "RazemRazniej". Aplikacja pokazuje współrzędne pozostałych
          członków grupy, dlatego gdy tylko zbytnio się oddalisz możesz sprawdzić współrzędne 
          pozostałych osób. 
         </font> </p>
+        
   </div>
+   
   <div class="ion-padding">
-  <H1 *ngIf="fireAuth.auth.currentUser">Welcome {{fireAuth.auth.currentUser.displayName}}</H1>
-  <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/maps" routerDirection="root">Your Location</ion-button>
-  <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/drinks" routerDirection="root">Drinks</ion-button>
+  <H1 class="centered" *ngIf="fireAuth.auth.currentUser">Welcome {{fireAuth.auth.currentUser.displayName}} to community</H1>
+ <p></p> <img *ngIf="fireAuth.auth.currentUser" src="assets/resources/pobrane.png"><p></p>
+  <ion-button slot="fixed" *ngIf="fireAuth.auth.currentUser" routerLink="/maps" routerDirection="root">Your Location</ion-button>
+  <ion-button slot="fixed" *ngIf="fireAuth.auth.currentUser" routerLink="/drinks" routerDirection="root">Drinks</ion-button>
   <firebase-ui></firebase-ui>
 </div>
-  
+
   
 </ion-content>
 
