@@ -29,6 +29,17 @@ export class HomePage implements OnInit{
       })
     }
 
+    doRefresh(event) {
+      console.log('Begin async operation');
+  
+      setTimeout(() => {
+        console.log('Async operation has ended');
+        event.target.complete();
+        this.router;
+        this.selectedPath
+      }, 1000);
+    }
+
     ngOnInit(){
 
     }
