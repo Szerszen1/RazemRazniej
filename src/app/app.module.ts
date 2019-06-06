@@ -19,6 +19,8 @@ import { environment } from 'src/environments/environment';
 import { DrinksComponent } from './drinks/drinks.component';
 import EventRepository from './model/events/events-repository';
 import * as firebase from 'firebase';
+import { HttpClientModule } from '@angular/common/http';
+import { DrinkService } from './providers/drink.service';
 //import firestore from 'firebase/firestore';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -57,7 +59,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   declarations: [AppComponent, DrinksComponent],
   entryComponents: [],
   imports: [BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
+    HttpClientModule, 
     AppRoutingModule, 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
@@ -68,6 +71,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   providers: [
     StatusBar,
     SplashScreen,
+    DrinkService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: EventRepository, useFactory: (db: AngularFirestore) => { return new EventRepository(db)}, deps: [AngularFirestore]}
   ],

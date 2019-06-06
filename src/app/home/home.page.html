@@ -29,7 +29,7 @@
   </div>
   <H1 *ngIf="fireAuth.auth.currentUser">Welcome {{fireAuth.auth.currentUser.displayName}}</H1>
   <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/maps" routerLinkActive="active">Your Location</ion-button>
-  <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/drinks" routerLinkActive="active">Drinks</ion-button>
+  <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/search" routerLinkActive="active">Drinks</ion-button>
   <firebase-ui></firebase-ui>
   
   

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>search</ion-title>
+      <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="search(searchTerm)" placeholder="Search for drinks"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
