@@ -1,9 +1,31 @@
-<ion-content>
-  <ion-header>
+<!-- <ion-split-pane> -->
+    <ion-content padding class="master" >
+  <ion-menu contentId="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>
+          MENU
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
+              <ion-item [routerLink]="p.url" routerDirection="root" [class.active-item]="selectedPath === p.url">
+                {{p.title}}
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+    </ion-content>
+  </ion-menu>
+ <ion-router-outlet id="content" main></ion-router-outlet>
+
+  <ion-header class="theme">
     <ion-toolbar *ngIf="fireAuth.auth.currentUser">
     <ion-buttons slot="start">
-        <!--<ion-back-button defaultHref="/"></ion-back-button>-->
-      </ion-buttons>    
+      <ion-menu-button>
+      </ion-menu-button>
+    </ion-buttons>    
     <ion-title>RazemRazniej</ion-title>
       <ion-buttons slot="end">
           <ion-avatar *ngIf=fireAuth.auth.currentUser.photoURL>
@@ -16,6 +38,7 @@
         </ion-buttons>   
     </ion-toolbar>
   </ion-header>
+  
 
   
   <div class="ion-padding">
@@ -27,10 +50,15 @@
          pozostałych osób. 
         </font> </p>
   </div>
+  <div class="ion-padding">
   <H1 *ngIf="fireAuth.auth.currentUser">Welcome {{fireAuth.auth.currentUser.displayName}}</H1>
   <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/maps" routerLinkActive="active">Your Location</ion-button>
   <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/drinks" routerLinkActive="active">Drinks</ion-button>
   <firebase-ui></firebase-ui>
+</div>
   
   
 </ion-content>
+
+<!-- </ion-split-pane> -->
+

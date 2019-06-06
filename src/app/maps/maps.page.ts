@@ -3,6 +3,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { $ } from 'protractor';
 import { AngularDelegate, Events } from '@ionic/angular';
 import EventRepository from '../model/events/events-repository';
+import { Router, RouterEvent } from '@angular/router';
 //import { Location } from '@angular/common';
 
 declare var google;
@@ -19,8 +20,25 @@ export class MapsPage implements OnInit, AfterViewInit {
     description: ''
   };
 
+  pages = [
+    {
+      title: 'Home',
+      url: '/home'
+    },
+    {
+      title: 'Maps',
+      url: '/maps'
+    },
+  ];
+
+  selectedPath ='';
+
   @ViewChild('mapElement') mapNativeElement: ElementRef;
-  constructor(public geolocation: Geolocation, private events: EventRepository) { }
+  constructor(public geolocation: Geolocation, private events: EventRepository, private router: Router) {
+    this.router.events.subscribe((event: RouterEvent) => {
+      this.selectedPath = event.url;
+  })
+   }
 
   ngOnInit() {
 
@@ -116,7 +134,7 @@ export class MapsPage implements OnInit, AfterViewInit {
       const mapDiv = document
       const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
         center: {lat: this.latitude, lng: this.longitude},
-        zoom: 14
+        zoom: 15
       });
 
   this.allMeetings(map);
