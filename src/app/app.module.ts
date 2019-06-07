@@ -16,11 +16,11 @@ import {AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/dat
 import {AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
-import { DrinksComponent } from './drinks/drinks.component';
 import EventRepository from './model/events/events-repository';
 import * as firebase from 'firebase';
 import { HttpClientModule } from '@angular/common/http';
 import { DrinkService } from './providers/drink.service';
+import { DrinksComponent } from './drinks/drinks.component';
 //import firestore from 'firebase/firestore';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -56,7 +56,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
 
 
 @NgModule({
-  declarations: [AppComponent, DrinksComponent],
+  declarations: [AppComponent,DrinksComponent],
   entryComponents: [],
   imports: [BrowserModule, 
     IonicModule.forRoot(),

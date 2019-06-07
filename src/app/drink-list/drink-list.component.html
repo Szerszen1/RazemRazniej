@@ -1,0 +1,12 @@
+<ion-list no-lines>
+  <button navPush="RecipePage"  ion-item *ngFor="let drink of displayDrinks">
+    <ion-avatar item-start>
+    </ion-avatar>
+    {{ drink.name }}
+  </button>
+  <ion-item-divider *ngIf="drinks && drinks.length >= 250">Showing max 250 drinks</ion-item-divider>
+</ion-list>
+
+<ion-infinite-scroll (ionInfinite)="showMoreDrinks($event)">
+  <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>

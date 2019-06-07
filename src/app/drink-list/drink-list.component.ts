@@ -1,31 +1,23 @@
 import { Component, OnInit, Input, IterableDiffers } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { Drink } from '../model/drinks/drink';
 import { NavController } from '@ionic/angular';
 
-
 @Component({
-  selector: 'app-drinks',
-  templateUrl: './drinks.component.html',
-  styleUrls: ['./drinks.component.scss'],
+  selector: 'app-drink-list',
+  templateUrl: './drink-list.component.html',
+  styleUrls: ['./drink-list.component.scss'],
 })
-
-export class DrinksComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error("Method not implemented.");
-  }
-  /*
+export class DrinkListComponent implements OnInit {
   @Input()
   drinks: Drink[];
 
   displayDrinks: Drink[] = [];
   iterableDiffer;
-*/
-  constructor(private iterableDiffers: IterableDiffers, public navCtrl: NavController) {
-    //this.iterableDiffer = this.iterableDiffers.find([]).create(null);
+
+  constructor(private iterableDiffers: IterableDiffers, public navCtrl: NavController) { 
+    this.iterableDiffer = this.iterableDiffers.find([]).create(null);
   }
-/*
+
   ngDoCheck() {
     let changes = this.iterableDiffer.diff(this.drinks);
     if (changes) {
@@ -38,5 +30,7 @@ export class DrinksComponent implements OnInit {
     this.displayDrinks = this.displayDrinks.concat(this.drinks.slice(this.displayDrinks.length, this.displayDrinks.length + 20))
     infinite.complete()
   }
-  */
+
+  ngOnInit() {}
+
 }
