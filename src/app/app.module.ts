@@ -21,6 +21,7 @@ import * as firebase from 'firebase';
 import { HttpClientModule } from '@angular/common/http';
 import { DrinkService } from './providers/drink.service';
 import { DrinksComponent } from './drinks/drinks.component';
+import { IonicStorageModule } from '@ionic/Storage';
 //import firestore from 'firebase/firestore';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -61,6 +62,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   imports: [BrowserModule, 
     IonicModule.forRoot(),
     HttpClientModule, 
+    IonicStorageModule.forRoot(),
     AppRoutingModule, 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,

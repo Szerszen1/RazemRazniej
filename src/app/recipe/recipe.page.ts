@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/Storage';
 import { Drink } from '../model/drinks/drink';
-import { NavController, NavParams } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { DrinkService } from '../providers/drink.service';
 
 @Component({
@@ -15,19 +16,11 @@ export class RecipePage implements OnInit {
   stars: string[] = [];
   measurement: string = 'metric';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public drinkProvider: DrinkService, public storage: Storage) { }
+  constructor(public navCtrl: NavController, public drinkProvider: DrinkService, public storage: Storage) { }
 
   ionViewDidLoad() {
-    this.storage
-      .get('STARS')
-      .then(res => {
-        this.stars = res || []
-        if (this.stars.indexOf(this.navParams.get('drinkId')) > -1) this.isStarred = true
-      })
-
     this.drinkProvider
-      .getDrinkById(this.navParams.get('drinkId') || '12091')
-      .subscribe(res => this.drink = res)
+      .getRandomDrink().subscribe(res => this.drink = res)
   }
 
   toggleStarred(drinkId: string) {
@@ -43,6 +36,8 @@ export class RecipePage implements OnInit {
   }
   
   ngOnInit() {
+    this.drinkProvider
+      .getRandomDrink().subscribe(res => this.drink = res)
   }
 
 }
