@@ -8,5 +8,18 @@
     <div *ngIf="isSearching" class="center">
         <ion-spinner></ion-spinner>
       </div>
-      <app-drink-list></app-drink-list>
+
+      <ion-list no-lines>
+        <ion-button expand="full" navPush="HomePage"  ion-item *ngFor="let drink of displayDrinks">
+          <ion-avatar item-start>
+              <img [src]="drink.thumbnail">
+          </ion-avatar>
+          {{ drink.name }}
+        </ion-button>
+        <ion-item-divider *ngIf="drinks && drinks.length >= 250">Showing max 250 drinks</ion-item-divider>
+      </ion-list>
+      
+      <ion-infinite-scroll (ionInfinite)="showMoreDrinks($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
 </ion-content>
