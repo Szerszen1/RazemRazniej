@@ -13,13 +13,13 @@
     <img class="main-image" [src]="drink.thumbnail">
    
     <ion-list no-lines>
-      <button ion-item *ngFor="let ingredient of drink.ingredients">
+      <ion-button expand="block" ion-item *ngFor="let ingredient of drink.ingredients">
         <ion-thumbnail item-left>
           <img [src]="ingredient.thumbnail">
         </ion-thumbnail>
-        {{ ingredient.name }}
-        <span item-end>{{ ingredient.amount }}</span>
-      </button>
+         {{ ingredient.name }} - 
+        <span item-end> {{ ingredient.amount }}</span>
+      </ion-button>
     </ion-list>
   
     <p padding-left padding-right>{{ drink.instructions }}</p>

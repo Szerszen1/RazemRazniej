@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-title>{{ drink.name }}</ion-title>
+</ion-header>
+
+<ion-content>
+  <ion-badge></ion-badge>
+  <div class="badge-container">
+    <ion-badge>{{ drink.isAlcoholic ? 'Alcoholic' : 'Non Alcoholic' }}</ion-badge>
+    <ion-badge *ngIf="drink.category">{{ drink.category }}</ion-badge>
+    <ion-badge *ngIf="drink.glass">{{ drink.glass }}</ion-badge>
+  </div>
+
+  <img class="main-image" [src]="drink.thumbnail">
+ 
+  <ion-list no-lines>
+    <ion-button expand="block" ion-item *ngFor="let ingredient of drink.ingredients">
+      <ion-thumbnail item-left>
+        <img [src]="ingredient.thumbnail">
+      </ion-thumbnail>
+       {{ ingredient.name }} - 
+      <span item-end> {{ ingredient.amount }}</span>
+    </ion-button>
+  </ion-list>
+
+  <p padding-left padding-right>{{ drink.instructions }}</p>
+</ion-content>

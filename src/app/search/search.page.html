@@ -10,7 +10,7 @@
       </div>
 
       <ion-list no-lines>
-        <ion-button expand="full" navPush="HomePage"  ion-item *ngFor="let drink of displayDrinks">
+        <ion-button expand="full" ion-item *ngFor="let drink of displayDrinks" [routerLink]="['/specific-recipe', drink.id]" routerDirection="forward">
           <ion-avatar item-start>
               <img [src]="drink.thumbnail">
           </ion-avatar>

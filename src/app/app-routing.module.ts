@@ -11,6 +11,8 @@ const routes: Routes = [
   { path: 'search', loadChildren: './search/search.module#SearchPageModule' },
   { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule' },
   { path: 'create-meeting', loadChildren: './create-meeting/create-meeting.module#CreateMeetingPageModule' },
+  { path: 'specific-recipe/:drink', loadChildren: './specific-recipe/specific-recipe.module#SpecificRecipePageModule' },
+
   ];
   
 @NgModule({
