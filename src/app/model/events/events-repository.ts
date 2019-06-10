@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { map, tap } from 'rxjs/operators';
 import { Event } from './event';
 import v4 from 'uuid/v4';
+import { threadId } from 'worker_threads';
 
 export default class EventRepository {
     constructor(private db: AngularFirestore) {}
@@ -15,6 +16,7 @@ export default class EventRepository {
             map(x => x.map(srcEvent => {
                 return {
                     id: srcEvent.payload.doc.id,
+                    path: srcEvent.payload.doc.id,
                     ...srcEvent.payload.doc.data()
                 } as Event
             }),
@@ -27,5 +29,28 @@ export default class EventRepository {
             id: v4(),
             ...event
         });
+    }
+
+    addAttendee(path: string, user: any) {
+        let item = this.db.collection('events').doc(path);
+        let s = item.valueChanges().subscribe((i: any) => {
+            let attendees = i.attendees || [];
+            attendees.push(user);
+            console.debug(attendees);
+            item.update({attendees: attendees});
+            s.unsubscribe();
+        });
+        console.debug(item);
+    }
+
+    removeAttendee(path: string, user: any) {
+        let item = this.db.collection('events').doc(path);
+        let s = item.valueChanges().subscribe((i: any) => {
+            let attendees = i.attendees || [];
+            attendees = attendees.filter(x => x.id !== user.id);
+            item.update({attendees: attendees});
+            s.unsubscribe();
+        });
+        console.debug(item);
     }
 }
