@@ -19,6 +19,7 @@ export class HomePage implements OnInit{
         title: 'Maps',
         url: '/maps'
       },
+     
     ];
 
     selectedPath ='';

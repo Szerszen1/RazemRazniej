@@ -3,6 +3,8 @@ import { Storage } from '@ionic/Storage';
 import { Drink } from '../model/drinks/drink';
 import { NavController } from '@ionic/angular';
 import { DrinkService } from '../providers/drink.service';
+import { Route } from '@angular/compiler/src/core';
+import { Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-recipe',
@@ -10,13 +12,39 @@ import { DrinkService } from '../providers/drink.service';
   styleUrls: ['./recipe.page.scss'],
 })
 export class RecipePage implements OnInit {
+  pages = [
+    {
+      title: 'Home',
+      url: '/home'
+    },
+    {
+      title: 'Maps',
+      url: '/maps'
+    },
+ 
+  ];
 
   drink: Drink = new Drink('', '', '', false, '', '', '', []);
   isStarred: boolean = false;
   stars: string[] = [];
   measurement: string = 'metric';
+  selectedPath ='';
+  constructor(public navCtrl: NavController, public drinkProvider: DrinkService, public storage: Storage,  private router: Router) { 
+    this.router.events.subscribe((event: RouterEvent) => {
+      this.selectedPath = event.url;
+  })
+  }
 
-  constructor(public navCtrl: NavController, public drinkProvider: DrinkService, public storage: Storage) { }
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+      this.router;
+      this.selectedPath
+    }, 1000);
+  }
 
   ionViewDidLoad() {
     this.drinkProvider
