@@ -10,6 +10,7 @@ import { Drink } from '../model/drinks/drink';
 })
 export class SpecificRecipePage implements OnInit {
 
+  
   drink: Drink = new Drink('', '', '', false, '', '', '', []);
   passedDrink = null;
 
