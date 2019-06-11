@@ -9,7 +9,7 @@ import { Ingredient } from '../model/drinks/ingredient';
   styleUrls: ['./search.page.scss'],
 })
 export class SearchPage implements OnInit {
-  
+ 
   searchMode: string = 'drink';
   drinks: Drink[];
   ingredients: Ingredient[];

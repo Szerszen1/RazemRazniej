@@ -12,14 +12,17 @@ import { Router, RouterEvent } from '@angular/router';
 export class HomePage implements OnInit{
     pages = [
       {
-        title: 'Home',
-        url: '/home'
-      },
-      {
-        title: 'Maps',
+        title: 'Find Your Event',
         url: '/maps'
       },
-     
+      {
+        title: 'Get Your Drink',
+        url: '/recipe'
+      },
+      {
+        title: 'Find Your Drink',
+        url: '/search'
+      },
     ];
 
     selectedPath ='';

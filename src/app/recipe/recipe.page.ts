@@ -12,17 +12,7 @@ import { Router, RouterEvent } from '@angular/router';
   styleUrls: ['./recipe.page.scss'],
 })
 export class RecipePage implements OnInit {
-  pages = [
-    {
-      title: 'Home',
-      url: '/home'
-    },
-    {
-      title: 'Maps',
-      url: '/maps'
-    },
  
-  ];
 
   drink: Drink = new Drink('', '', '', false, '', '', '', []);
   isStarred: boolean = false;
