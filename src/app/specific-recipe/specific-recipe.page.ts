@@ -9,7 +9,20 @@ import { Drink } from '../model/drinks/drink';
   styleUrls: ['./specific-recipe.page.scss'],
 })
 export class SpecificRecipePage implements OnInit {
-
+  pages = [
+    {
+      title: 'Home',
+      url: '/home'
+    },
+    {
+      title: 'Find Your Event',
+      url: '/maps'
+    },
+    {
+      title: 'Get Your Drink',
+      url: '/recipe'
+    },
+  ];
   
   drink: Drink = new Drink('', '', '', false, '', '', '', []);
   passedDrink = null;
