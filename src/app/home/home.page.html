@@ -1,10 +1,40 @@
-<ion-content>
-  <ion-header>
+<!-- <ion-split-pane> -->
+    <ion-content padding>
+        <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content
+              pullingIcon="arrow-dropdown"
+              pullingText="Pull to refresh"
+              refreshingSpinner="circles"
+              refreshingText="Refreshing...">
+            </ion-refresher-content>
+          </ion-refresher>
+  <ion-menu [swipeGesture]="isSwipeEnabled" contentId="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>
+          Menu
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
+              <ion-item [routerLink]="p.url" routerDirection="root" [class.active-item]="selectedPath === p.url">
+                {{p.title}}
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+    </ion-content>
+  </ion-menu>
+ <ion-router-outlet id="content"></ion-router-outlet>
+
+  <ion-header class="theme">
     <ion-toolbar *ngIf="fireAuth.auth.currentUser">
     <ion-buttons slot="start">
-        <!--<ion-back-button defaultHref="/"></ion-back-button>-->
-      </ion-buttons>    
-    <ion-title>RazemRazniej</ion-title>
+      <ion-menu-button>
+      </ion-menu-button>
+    </ion-buttons>    
+    <ion-title>Home</ion-title>
       <ion-buttons slot="end">
           <ion-avatar *ngIf=fireAuth.auth.currentUser.photoURL>
             <ion-img src="{{fireAuth.auth.currentUser.photoURL}}"></ion-img>
@@ -12,26 +42,35 @@
           <ion-avatar *ngIf=!fireAuth.auth.currentUser.photoURL>
               <img src="assets/resources/guest.jpg">
             </ion-avatar>
-          <ion-button *ngIf="fireAuth.auth.currentUser" (click)="signOut()">Sign out</ion-button>
+          <ion-button *ngIf="fireAuth.auth.currentUser" (click)="signOut()">Logout</ion-button>
         </ion-buttons>   
     </ion-toolbar>
   </ion-header>
-
-  
   <div class="ion-padding">
-    <h1  *ngIf="!fireAuth.auth.currentUser" style="color:blue;"><b>RazemRazniej</b></h1>
+    <p></p>
+    <h1 *ngIf="!fireAuth.auth.currentUser" class="centered" style="color:blue;"><b>RazemRazniej</b></h1>
     <p *ngIf="!fireAuth.auth.currentUser"><font size="1">Kiedy wybierasz się ze znajomymi na wycieczkę do innego miasta albo na wieczorny wypad do pubu,
        bardzo łatwo zgubić pozostałych członków grupy. Aby zapobiec takim nieprzyjemnym sytuacjom
         proponujemy użycie aplikacji "RazemRazniej". Aplikacja pokazuje współrzędne pozostałych
          członków grupy, dlatego gdy tylko zbytnio się oddalisz możesz sprawdzić współrzędne 
          pozostałych osób. 
         </font> </p>
+        
   </div>
-  <H1 *ngIf="fireAuth.auth.currentUser">Welcome {{fireAuth.auth.currentUser.displayName}}</H1>
-  <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/maps" routerLinkActive="active">Your Location</ion-button>
+
+   
+  <div class="ion-padding">
+  <H1 class="centered" *ngIf="fireAuth.auth.currentUser">Welcome {{fireAuth.auth.currentUser.displayName}} to community</H1>
+ <p></p> <img *ngIf="fireAuth.auth.currentUser" src="assets/resources/pobrane.png"><p></p>
+  <ion-button slot="fixed" *ngIf="fireAuth.auth.currentUser" routerLink="/maps" routerDirection="root">Your Location</ion-button>
   <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/search" routerLinkActive="active">Drinks</ion-button>
   <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/recipe" routerLinkActive="active">Random Drink</ion-button>
+
   <firebase-ui></firebase-ui>
-  
+</div>
+
   
 </ion-content>
+
+<!-- </ion-split-pane> -->
+

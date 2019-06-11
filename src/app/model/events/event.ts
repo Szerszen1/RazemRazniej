@@ -1,5 +1,10 @@
 export interface Event {
+    id?: any;
+    path?: any;
     title: string;
     description: string;
-    id: string;
+    latitude: any;
+    longitude: any;
+    creator: any;
+    attendees?: any[];
 }

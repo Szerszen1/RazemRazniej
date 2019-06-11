@@ -1,8 +1,10 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { $ } from 'protractor';
 import { AngularDelegate, Events } from '@ionic/angular';
 import EventRepository from '../model/events/events-repository';
+import { Router, RouterEvent } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 //import { Location } from '@angular/common';
 
 declare var google;
@@ -11,7 +13,7 @@ declare var google;
   templateUrl: './maps.page.html',
   styleUrls: ['./maps.page.scss'],
 })
-export class MapsPage implements OnInit, AfterViewInit {
+export class MapsPage implements AfterViewInit {
   latitude: any;
   longitude: any;
   todo = {
@@ -19,127 +21,162 @@ export class MapsPage implements OnInit, AfterViewInit {
     description: ''
   };
 
+  pages = [
+    {
+      title: 'Home',
+      url: '/home'
+    },
+    {
+      title: 'Maps',
+      url: '/maps'
+    },
+  ];
+
+  selectedPath = '';
+  map: any;
+  allEvents: any[];
+  user: any;
+  markers: any[] = [];
+
   @ViewChild('mapElement') mapNativeElement: ElementRef;
-  constructor(public geolocation: Geolocation, private events: EventRepository) { }
-
-  ngOnInit() {
-
-    this.events.findAll().subscribe(list => {
-      console.log(list);
-    })
+  constructor(public geolocation: Geolocation, private events: EventRepository, private router: Router, private auth: AngularFireAuth) {
+    this.router.events.subscribe((event: RouterEvent) => {
+      this.selectedPath = event.url;
+    });
+    this.auth.authState.subscribe(user => {
+      this.user =  {
+        name: user.displayName,
+        id: user.uid,
+        mail: user.email
+      };
+    });
   }
 
-  createMeeting(form){
+  createMeeting(form) {
     console.log(this.todo, this.latitude, this.longitude);
   }
 
-  createEvent():  void {
-    console.log(this.todo);
-    this.events.addEvent({
-      id: '111',
+  clearMarkers() {
+    this.markers.forEach(m => {
+      m.setMap(null);
+    });
+    this.markers = [];
+  }
+
+  createEvent(): void {
+    let x = {
+      latitude: this.latitude,
+      longitude: this.longitude,
+      creator: this.user,
       ...this.todo
-    })
+    };
+    this.events.addEvent(x);
   }
 
-  joinMeeting(event, id){
-        // this.events.addEvent({
-    //   title: 'titit0',
-    //   description: 'desc',
-    //   id: '123'
-    // });
-    
-    console.log('Dołączasz do wydarzenia: ' + id)
+  joinMeeting(event, id) {
+    const e = this.allEvents.find(x => x.id === id);
+    this.events.addAttendee(e.path, this.user);
+    console.log('Dołączasz do wydarzenia: ' + id);
   }
-
-  allMeetings(map): void{
-    var meetings = [
-      {
-        id: 1,
-        name: 'Fenix',
-        latitude: 50.062851,
-        longitude: 19.938042,
-        description: 'Klub muzyczny Fenix'
-      },
-      {
-        id: 2,
-        name: 'Wawel',
-        latitude: 50.054239,
-        longitude: 19.935434,
-        description: 'Zamek Królewski na Wawelu'
-      }
-    ]
-
-      meetings.forEach(element => {
-        var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading">' + element.name + '</h1>'+
-        '<div id="bodyContent">'+
-        '<p>' + element.description + '</p>'+
-        '</div>'+
-        '<ion-button id="button_'+element.id+'">Dołącz do spotkania</ion-button>' +
-        '</div>';
   
-        var infoWindow = new google.maps.InfoWindow({
-          content: contentString
-        });
-        const Marker = new google.maps.Marker;
-        const position = {
+  leaveMeeting(event, id) {
+    const e = this.allEvents.find(x => x.id === id);
+    this.events.removeAttendee(e.path, this.user);
+    console.log('Opuszczasz wydarzenie: ' + id);
+  }
+
+  amIAttendee(id: any) {
+    let e = this.allEvents.find(x => x.id === id);
+    if (!e) return false;
+    return ((e.attendees && e.attendees.length) ? !!e.attendees.find(x => x.id === this.user.id) : false);
+  }
+
+  private buildWindowString(element: any) {
+    console.debug(element);
+    return `
+      <div id="content">
+        <h1 class="firstHeading">${element.title}</h1>
+        <div>
+          <p>${element.description}</p>
+        </div>
+        <div>
+          <p>Twórca: ${element.creator.name}</p>
+        </div>
+        <div>
+         <h3>Uczestnicy</h3>
+         <ul>
+          ${(element.attendees && element.attendees.length) ? element.attendees.map(x => '<li>' + x.name + '</li>') : '-'}
+         </ul>
+         ${element.creator.id !== this.user.id ? ('<ion-button id="button_' + element.id + '">' + (this.amIAttendee(element.id) ? 'Opuść spotkanie' : 'Dołącz do spotkania') + '</ion-button>') : ''}
+        </div>
+      </div>
+    `;
+  }
+
+  getEventsFromDB() {
+    this.events.findAll().subscribe(list => {
+      this.allEvents = list;
+      console.debug('refreshing list', list);
+      this.clearMarkers();
+      this.addMyMarker();
+      list.forEach(element => {
+        this.addMarker(element.id, {
           lat: element.latitude,
           lng: element.longitude
-        }
-        console.log(position);
-        
-      /**  infoWindow.setPosition(pos);
-        infoWindow.setContent('You are here');
-        infoWindow.open(map)**/
-        Marker.setPosition(position);
-        Marker.setMap(map);
-        // Marker.setContent('You Are here')
-        Marker.addListener('click', function() {
-          infoWindow.open(map, Marker);
-        });
-        google.maps.event.addListener(infoWindow, 'domready', () => {
-          const el = document.querySelector('#button_'+element.id);
-          el.addEventListener('click', (event) => this.joinMeeting(event, element.id));
-        });
-    
-      
+        }, this.buildWindowString(element));
+      });
     });
+  }
 
+  addMyMarker() {
+    const position = {
+      lat: this.latitude,
+      lng: this.longitude,
+      icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+    };
+    this.addMarker(0, position);
+  }
+
+  addMarker(id: any, markerData: any, windowData?: any) {
+    const Marker = new google.maps.Marker;
+    Marker.setPosition({ lat: markerData.lat, lng: markerData.lng });
+    if (markerData.icon) {
+      Marker.setIcon({url: markerData.icon});
+    }
+    Marker.setMap(this.map);
+    if (windowData) {
+      var infoWindow = new google.maps.InfoWindow({
+        content: windowData
+      });
+      Marker.addListener('click', function () {
+        infoWindow.open(this.map, Marker);
+      });
+      google.maps.event.addListener(infoWindow, 'domready', () => {
+        const el = document.querySelector('#button_' + id);
+        if (el) {
+          el.addEventListener('click', (event) => this.amIAttendee(id) ? this.leaveMeeting(event, id) : this.joinMeeting(event, id));
+        }
+      });
+    };
+    this.markers.push(Marker);
   }
 
   ngAfterViewInit(): void {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.latitude = resp.coords.latitude;
       this.longitude = resp.coords.longitude;
-      const mapDiv = document
-      const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
-        center: {lat: this.latitude, lng: this.longitude},
-        zoom: 14
+      this.map = new google.maps.Map(this.mapNativeElement.nativeElement, {
+        center: { lat: this.latitude, lng: this.longitude },
+        zoom: 15
       });
-
-  this.allMeetings(map);
-
-      const Marker = new google.maps.Marker;
-      const position = {
+      this.getEventsFromDB();
+      this.map.setCenter({
         lat: this.latitude,
         lng: this.longitude
-      }
-      console.log(position);
-      
-    /**  infoWindow.setPosition(pos);
-      infoWindow.setContent('You are here');
-      infoWindow.open(map)**/
-      Marker.setPosition(position);
-      Marker.setMap(map);
-      // Marker.setContent('You Are here')
-      map.setCenter(position);
+      });
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-
-
   }
 
-  }
+}
