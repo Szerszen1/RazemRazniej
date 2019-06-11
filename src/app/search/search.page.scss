@@ -1,0 +1,31 @@
+.active-item{
+    border-left: 8px solid var(--ion-color-dark);
+}
+ion-content{
+    //    --ion-background-color: linear-gradient(to bottom, #ffdab3 0%, ffe6cc 100%) !important;
+    --background: linear-gradient(197deg, rgb(167, 164, 164) 0%, rgb(160, 145, 145) 13.5%, rgb(151, 122, 122) 33.33%, rgba(155, 104, 84, 0.61) 100%) !important;
+    }
+ion-toolbar{
+    
+    //    --ion-background-color: linear-gradient(to bottom, #ffdab3 0%, ffe6cc 100%) !important;
+    --background: linear-gradient(197deg, rgb(167, 164, 164) 0%, rgb(160, 145, 145) 13.5%, rgb(151, 122, 122) 33.33%, rgba(155, 104, 84, 0.61) 100%) !important;
+}
+ion-item{
+    --background: linear-gradient(197deg, rgb(167, 164, 164) 0%, rgb(160, 145, 145) 13.5%, rgb(151, 122, 122) 33.33%, rgba(155, 104, 84, 0.61) 100%) !important;
+}
+ion-refresher{
+    --background: linear-gradient(197deg, rgb(167, 164, 164) 0%, rgb(160, 145, 145) 13.5%, rgb(151, 122, 122) 33.33%, rgba(155, 104, 84, 0.61) 100%) !important;
+}
+.centered {
+    display: table-cell;
+      width: 800px;
+    text-align: center;
+    vertical-align: middle;
+    }
+
+.imgcl {
+    display: table-cell;
+    width: 800px;
+    text-align: center;
+    vertical-align: middle;
+        }

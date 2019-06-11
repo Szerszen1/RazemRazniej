@@ -27,8 +27,12 @@ export class MapsPage implements AfterViewInit {
       url: '/home'
     },
     {
-      title: 'Maps',
-      url: '/maps'
+      title: 'Get Your Drink',
+      url: '/recipe'
+    },
+    {
+      title: 'Find Your Drink',
+      url: '/search'
     },
   ];
 
