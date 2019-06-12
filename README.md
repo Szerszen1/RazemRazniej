@@ -5,12 +5,12 @@ Co w przypadku, gdy brak pomysłu na wieczorny trunek? Nic strasznego! Nasza baz
 
 ## Skład zespołu projektowego
 
-Karolina Dylewska 192680 
-Paulina Wujkowska 195361
-Maciej Dyjak 192677
-Jakub Szerszeń 194925
+* Karolina Dylewska 192680 
+* Paulina Wujkowska 195361
+* Maciej Dyjak 192677
+* Jakub Szerszeń 194925
 
-## Linki
+## Linki:
 
 ### GitHub
 https://github.com/Szerszen1/RazemRazniej
