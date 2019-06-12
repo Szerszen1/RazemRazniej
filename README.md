@@ -1,37 +1,25 @@
-## Welcome to GitHub Pages
+## Opis
 
-You can use the [editor on GitHub](https://github.com/Szerszen1/RazemRazniej/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Nie masz planów na wieczór? Wszyscy znajomi nie odbierają? Na pewno korzystają już z naszej aplikacji RazemRazniej! Dołącz do już stworzonych spotkań lub utwórz nowe na podstawie swojej lokalizacji. Wpisz nazwę i opis, klik- gotowe! Teraz czekaj tylko na znajomych, którzy do Ciebie dołączą.
+Co w przypadku, gdy brak pomysłu na wieczorny trunek? Nic strasznego! Nasza baza oferuje drinki z całego świata wraz z informacją o składnikach i sposobie przygotowania. Nie ma miejsca na nudę. A w razie braku pomysłu, oferujemy możliwość zdania się na los. Aplikacja wybierze za Ciebie losowego drinka, który umili Ci spotkanie. Enjoy!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Skład zespołu projektowego
 
-### Markdown
+Karolina Dylewska 192680 
+Paulina Wujkowska 195361
+Maciej Dyjak 192677
+Jakub Szerszeń 194925
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Linki
 
-```markdown
-Syntax highlighted code block
+### GitHub
+https://github.com/Szerszen1/RazemRazniej
 
-# Header 1
-## Header 2
-### Header 3
+### Trello
+https://trello.com/b/txkMDROF/razem-razniej
 
-- Bulleted
-- List
+### Prototyp
+https://marvelapp.com/49c752e
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Szerszen1/RazemRazniej/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### Pages
+https://szerszen1.github.io/RazemRazniej/
