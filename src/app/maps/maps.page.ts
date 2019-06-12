@@ -104,14 +104,14 @@ export class MapsPage implements AfterViewInit {
           <p>${element.description}</p>
         </div>
         <div>
-          <p>Twórca: ${element.creator.name}</p>
+          <p>Creator: ${element.creator.name}</p>
         </div>
         <div>
-         <h3>Uczestnicy</h3>
+         <h3>Participants:</h3>
          <ul>
           ${(element.attendees && element.attendees.length) ? element.attendees.map(x => '<li>' + x.name + '</li>') : '-'}
          </ul>
-         ${element.creator.id !== this.user.id ? ('<ion-button id="button_' + element.id + '">' + (this.amIAttendee(element.id) ? 'Opuść spotkanie' : 'Dołącz do spotkania') + '</ion-button>') : ''}
+         ${element.creator.id !== this.user.id ? ('<ion-button id="button_' + element.id + '">' + (this.amIAttendee(element.id) ? 'Join meeting' : 'Leave meeting') + '</ion-button>') : ''}
         </div>
       </div>
     `;

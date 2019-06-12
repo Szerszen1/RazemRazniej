@@ -61,11 +61,12 @@
    
   <div class="centered">
   <H1  *ngIf="fireAuth.auth.currentUser">Welcome {{fireAuth.auth.currentUser.displayName}} to community</H1>
- <p ></p> <img class="imgcl" *ngIf="fireAuth.auth.currentUser" src="assets/resources/pobrane.png"><p></p>
+ <p ></p> <img class="imgcl" *ngIf="fireAuth.auth.currentUser" src="assets/resources/pobrane.png"><p></p><br>
+ <div text-center align-items-center>
   <ion-button slot="fixed" *ngIf="fireAuth.auth.currentUser" routerLink="/maps" routerDirection="root">Your Location</ion-button>
   <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/search" routerLinkActive="active">Drinks</ion-button>
   <ion-button *ngIf="fireAuth.auth.currentUser" routerLink="/recipe" routerLinkActive="active">Random Drink</ion-button>
-
+</div>
   <firebase-ui></firebase-ui>
 </div>
 
