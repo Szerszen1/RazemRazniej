@@ -10,6 +10,17 @@ Co w przypadku, gdy brak pomysłu na wieczorny trunek? Nic strasznego! Nasza baz
 * Maciej Dyjak 192677
 * Jakub Szerszeń 194925
 
+## Diagram UML i Screeny z aplikacji:
+<img src="./Git Page/1.png" alt="Prototype1"/>
+<img src="./Git Page/2.png" alt="Prototype2"/>
+<img src="./Git Page/3.png" alt="Prototype3"/>
+<img src="./Git Page/4.png" alt="Prototype4"/>
+<img src="./Git Page/5.png" alt="Prototype5"/>
+<img src="./Git Page/6.png" alt="Prototype6"/>
+<img src="./Git Page/7.png" alt="Prototype7"/>
+<img src="./Git Page/8.png" alt="Prototype8"/>
+<img src="./Git Page/UML.png" alt="Diagram UML"/>
+
 ## Linki:
 
 ### GitHub
